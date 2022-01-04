@@ -5,9 +5,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier \"**/*.{js,ts,jsx,tsx,json}\" --write --ignore-path .gitignore"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,jsx,tsx}": [
+      "prettier --write",
+      "next lint"
+    ],
+    "**/*.json": "prettier --write"
   },
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/material": "^5.2.7",
     "@reduxjs/toolkit": "^1.7.1",
     "next": "12.0.7",
     "react": "17.0.2",
@@ -19,6 +36,11 @@
     "@types/react": "17.0.38",
     "eslint": "8.6.0",
     "eslint-config-next": "12.0.7",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.5",
+    "prettier": "^2.5.1",
+    "sass": "^1.45.2",
     "typescript": "4.5.4"
   }
 }
