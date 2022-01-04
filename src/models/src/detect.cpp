@@ -1,4 +1,4 @@
-#include "Detect.hpp"
+#include "detect.hpp"
 #include <emscripten/bind.h>
 #include <emscripten.h>
 #include <opencv2/imgcodecs.hpp>
