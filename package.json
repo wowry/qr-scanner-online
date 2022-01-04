@@ -6,19 +6,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier \"**/*.{js,ts,jsx,tsx,json}\" --write --ignore-path .gitignore"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*.{js,ts,jsx,tsx}": [
-      "prettier --write",
-      "next lint"
-    ],
-    "**/*.json": "prettier --write"
+    "format": "prettier \"**/*.{js,ts,jsx,tsx,json}\" --write --ignore-path .gitignore",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -37,7 +26,7 @@
     "eslint": "8.6.0",
     "eslint-config-next": "12.0.7",
     "eslint-config-prettier": "^8.3.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "lint-staged": "^12.1.5",
     "prettier": "^2.5.1",
     "sass": "^1.45.2",
