@@ -13,7 +13,7 @@ const title = css`
   font-size: 1.2rem;
 `;
 
-const Header: React.FC = () => {
+const Header: React.VFC = () => {
   return (
     <AppBar position="relative">
       <Toolbar css={container}>
