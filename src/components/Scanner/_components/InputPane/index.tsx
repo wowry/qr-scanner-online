@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect } from "react";
 import Description from "./Description";
+import ImageCard from "./ImageCard";
 import { css } from "@emotion/react";
 import { blue } from "@mui/material/colors";
 import commonStyles from "./commonStyles";
@@ -169,6 +170,14 @@ const InputPane: React.VFC = () => {
             `,
           ]}
         />
+
+        {imageUrl && (
+          <ImageCard
+            imageUrl={imageUrl}
+            hideAllIcons={hideAllIcons}
+            setWarningMessage={setWarningMessage}
+          />
+        )}
       </Container>
     </div>
   );
