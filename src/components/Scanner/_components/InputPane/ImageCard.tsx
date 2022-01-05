@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { reset } from "../../../../libs/slices/ImageCardSlice";
+import { reset, push, complete } from "../../../../libs/slices/ImageCardSlice";
 import { css } from "@emotion/react";
 import { blue } from "@mui/material/colors";
 import commonStyles from "./commonStyles";
@@ -74,6 +74,46 @@ const ImageCard: React.VFC<Props> = (props) => {
     const data = ctx.getImageData(0, 0, width, height);
 
     // ワーカースレッドで検出処理を実行
+    const worker = new Worker(
+      new URL("../../../../libs/worker", import.meta.url)
+    );
+
+    worker.postMessage({ data, width, height });
+
+    // 検出結果を1つずつ取得
+    worker.addEventListener(
+      "message",
+      ({ data: { i, codeNum, pointArray, url } }) => {
+        if (codeNum === 0) {
+          props.setWarningMessage("画像にQRコードが含まれていません");
+          setIsLoading(false);
+          return;
+        }
+
+        console.log(url);
+
+        const color = `hsl(${(i * 360) / codeNum}, 100%, 40%)`;
+
+        dispatch(push({ url: url, color: color }));
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 20;
+
+        // lineWidth分オフセットして矩形を描画
+        const x = pointArray[0] - ctx.lineWidth / 2;
+        const y = pointArray[1] - ctx.lineWidth / 2;
+        const width = pointArray[2] - pointArray[0] + ctx.lineWidth;
+        const height = pointArray[7] - pointArray[1] + ctx.lineWidth;
+
+        ctx.strokeRect(x, y, width, height);
+
+        // 全コード検出完了
+        if (i === codeNum - 1) {
+          setIsLoading(false);
+          dispatch(complete());
+        }
+      }
+    );
   };
 
   return (
