@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Header from "../components/Header/Header";
 import Description from "../components/Description/Description";
+import Scanner from "../components/Scanner/Scanner";
 import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <Description />
+        <Scanner />
       </main>
 
       <footer className={styles.footer}>
