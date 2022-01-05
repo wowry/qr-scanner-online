@@ -1,7 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  pushAlert,
+  removeAlert,
+  selectAlertState,
+  getId,
+} from "../../../../libs/slices/AlertSlice";
 import Description from "./Description";
 import ImageCard from "./ImageCard";
+import { alertDisplayTime } from "../../../variables";
 import { css } from "@emotion/react";
 import { blue } from "@mui/material/colors";
 import commonStyles from "./commonStyles";
@@ -39,21 +47,21 @@ const styles = {
   `,
   addIcon: css`
     fill: ${blue[500]};
-    font-size: 8vw;
-    z-index: 1;
+    font-size: 6rem;
+    z-index: 5;
   `,
 };
 
 const InputPane: React.VFC = () => {
   const [imageUrl, setImageUrl] = useState<string>();
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const [warningMessage, setWarningMessage] = useState<string>("");
   const [addIconVisibility, setAddIconVisibility] = useState<boolean>(false);
   const [dropZoneVisibility, setDropZoneVisibility] = useState<boolean>(false);
+  const alertState = useSelector(selectAlertState);
+  const dispatch = useDispatch();
 
   // 画像ペーストのトリガー設定
   useEffect(() => {
-    const element = document.querySelector("#paste");
+    const element = document.querySelector(".paste");
 
     element?.addEventListener("click", paste);
 
@@ -96,7 +104,19 @@ const InputPane: React.VFC = () => {
       setImageUrl(objectURL);
     } catch (e) {
       if (e instanceof DOMException) {
-        setErrorMessage("画像がコピーされていません");
+        const id = getId(alertState);
+
+        dispatch(
+          pushAlert({
+            id: id,
+            timeoutId: setTimeout(
+              () => dispatch(removeAlert(id)),
+              alertDisplayTime * 1000
+            ),
+            message: "画像がコピーされていません",
+            severity: "error",
+          })
+        );
       } else {
         throw e;
       }
@@ -140,7 +160,7 @@ const InputPane: React.VFC = () => {
   };
 
   return (
-    <div css={styles.wrapper}>
+    <div css={styles.wrapper} className="input-pane">
       {dropZoneVisibility && (
         <div
           css={styles.dropZone}
@@ -151,7 +171,7 @@ const InputPane: React.VFC = () => {
         />
       )}
       <Container
-        id="paste"
+        className="paste"
         css={styles.container}
         onMouseOver={() => setAddIconVisibility(true)}
         onMouseLeave={() => setAddIconVisibility(false)}
@@ -172,11 +192,7 @@ const InputPane: React.VFC = () => {
         />
 
         {imageUrl && (
-          <ImageCard
-            imageUrl={imageUrl}
-            hideAllIcons={hideAllIcons}
-            setWarningMessage={setWarningMessage}
-          />
+          <ImageCard imageUrl={imageUrl} hideAllIcons={hideAllIcons} />
         )}
       </Container>
     </div>

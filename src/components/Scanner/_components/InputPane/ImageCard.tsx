@@ -1,7 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { reset, push, complete } from "../../../../libs/slices/ImageCardSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  reset,
+  pushResult,
+  complete,
+} from "../../../../libs/slices/ImageCardSlice";
+import {
+  pushAlert,
+  removeAlert,
+  getId,
+  selectAlertState,
+} from "../../../../libs/slices/AlertSlice";
+import { alertDisplayTime } from "../../../variables";
 import { css } from "@emotion/react";
 import { blue } from "@mui/material/colors";
 import commonStyles from "./commonStyles";
@@ -32,13 +43,12 @@ export const styles = {
 interface Props {
   imageUrl: string;
   hideAllIcons: () => void;
-  setWarningMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ImageCard: React.VFC<Props> = (props) => {
   const [canvasHeight, setCanvasHeight] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const alertState = useSelector(selectAlertState);
   const dispatch = useDispatch();
 
   const onload = async () => {
@@ -49,8 +59,8 @@ const ImageCard: React.VFC<Props> = (props) => {
     setTimeout(() => setIsLoading(true), 200);
 
     const imgElement: HTMLImageElement | null =
-      document.querySelector("#qrcode");
-    const canvas: HTMLCanvasElement | null = document.querySelector("#canvas");
+      document.querySelector(".qrcode");
+    const canvas: HTMLCanvasElement | null = document.querySelector(".canvas");
 
     if (!imgElement || !canvas) return;
 
@@ -85,7 +95,19 @@ const ImageCard: React.VFC<Props> = (props) => {
       "message",
       ({ data: { i, codeNum, pointArray, url } }) => {
         if (codeNum === 0) {
-          props.setWarningMessage("画像にQRコードが含まれていません");
+          const id = getId(alertState);
+
+          dispatch(
+            pushAlert({
+              id: id,
+              timeoutId: setTimeout(
+                () => dispatch(removeAlert(id)),
+                alertDisplayTime * 1000
+              ),
+              message: "画像にQRコードが含まれていません",
+              severity: "warning",
+            })
+          );
           setIsLoading(false);
           return;
         }
@@ -94,7 +116,7 @@ const ImageCard: React.VFC<Props> = (props) => {
 
         const color = `hsl(${(i * 360) / codeNum}, 100%, 40%)`;
 
-        dispatch(push({ url: url, color: color }));
+        dispatch(pushResult({ url: url, color: color }));
 
         ctx.strokeStyle = color;
         ctx.lineWidth = 20;
@@ -122,7 +144,7 @@ const ImageCard: React.VFC<Props> = (props) => {
         onLoad={onload}
         src={props.imageUrl}
         alt="QR"
-        id="qrcode"
+        className="qrcode"
         style={{ display: "none" }}
       />
       <Card
@@ -134,7 +156,7 @@ const ImageCard: React.VFC<Props> = (props) => {
           `,
         ]}
       >
-        <canvas id="canvas" css={styles.canvas} />
+        <canvas className="canvas" css={styles.canvas} />
         {isLoading && (
           <CircularProgress css={[commonStyles.center, styles.loadIcon]} />
         )}

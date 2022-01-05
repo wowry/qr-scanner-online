@@ -20,7 +20,10 @@ export const imageCardSlice = createSlice({
     reset: () => {
       return initialState;
     },
-    push: (state, action: PayloadAction<{ url: string; color: string }>) => {
+    pushResult: (
+      state,
+      action: PayloadAction<{ url: string; color: string }>
+    ) => {
       state.urlList.push(action.payload.url);
       state.colorList.push(action.payload.color);
     },
@@ -30,7 +33,7 @@ export const imageCardSlice = createSlice({
   },
 });
 
-export const { reset, push, complete } = imageCardSlice.actions;
+export const { reset, pushResult, complete } = imageCardSlice.actions;
 
 export const selectImageCardState = (state: RootState): ImageCardState =>
   state.imageCard;
