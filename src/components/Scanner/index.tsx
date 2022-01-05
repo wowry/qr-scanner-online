@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
+import InputPane from "./_components/InputPane";
 import { css } from "@emotion/react";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -25,7 +26,9 @@ const Scanner: React.VFC = () => {
 
   return (
     <div css={styles.container(isPC)}>
-      <div css={styles.pane(isPC)}></div>
+      <div css={styles.pane(isPC)}>
+        <InputPane />
+      </div>
       <div css={styles.pane(isPC)}></div>
     </div>
   );
