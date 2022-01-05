@@ -6,14 +6,16 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Alert from "@mui/material/Alert";
 
-const container = css`
-  width: 90%;
-  margin-top: 20px;
-`;
+const styles = {
+  container: css`
+    width: 90%;
+    margin-top: 20px;
+  `,
+};
 
 const Description: React.VFC = () => {
   return (
-    <div css={container}>
+    <div css={styles.container}>
       <Typography>
         スクリーンショットなどの画像からQRコードを検出するアプリです。
       </Typography>
