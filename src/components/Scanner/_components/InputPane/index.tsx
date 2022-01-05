@@ -64,6 +64,7 @@ const InputPane: React.VFC = () => {
     const element = document.querySelector(".paste");
 
     element?.addEventListener("click", paste);
+    element?.addEventListener("touchstart", paste);
 
     const keyupHandler = (e: KeyboardEvent) => {
       e.preventDefault();
@@ -77,6 +78,7 @@ const InputPane: React.VFC = () => {
 
     return () => {
       element?.removeEventListener("click", paste);
+      element?.removeEventListener("touchstart", paste);
       document.removeEventListener("keyup", keyupHandler);
     };
 
@@ -123,7 +125,9 @@ const InputPane: React.VFC = () => {
     }
   }
 
-  const preventDefault = (e: React.DragEvent | React.MouseEvent) => {
+  const preventDefault = (
+    e: React.DragEvent | React.MouseEvent | React.TouchEvent
+  ) => {
     e.preventDefault();
     e.stopPropagation();
   };
@@ -138,12 +142,12 @@ const InputPane: React.VFC = () => {
     setDropZoneVisibility(false);
   };
 
-  const dragLeaveEventHandler = (e: React.DragEvent) => {
+  const dragLeaveEventHandler = (e: React.DragEvent | React.TouchEvent) => {
     preventDefault(e);
     hideAllIcons();
   };
 
-  const dragEnterEventHandler = (e: React.DragEvent) => {
+  const dragOverEventHandler = (e: React.DragEvent) => {
     preventDefault(e);
     showAllIcons();
   };
@@ -165,7 +169,7 @@ const InputPane: React.VFC = () => {
         <div
           css={styles.dropZone}
           onMouseLeave={() => hideAllIcons()}
-          onDragOver={(e) => dragEnterEventHandler(e)}
+          onDragOver={(e) => dragOverEventHandler(e)}
           onDragLeave={(e) => dragLeaveEventHandler(e)}
           onDrop={(e) => dropEventHandler(e)}
         />
@@ -175,7 +179,9 @@ const InputPane: React.VFC = () => {
         css={styles.container}
         onMouseOver={() => setAddIconVisibility(true)}
         onMouseLeave={() => setAddIconVisibility(false)}
-        onDragOver={(e) => dragEnterEventHandler(e)}
+        onTouchStart={() => setAddIconVisibility(true)}
+        onTouchEnd={(e) => dragLeaveEventHandler(e)}
+        onDragOver={(e) => dragOverEventHandler(e)}
       >
         <Typography css={styles.title}>画像を選択</Typography>
         <Description />
