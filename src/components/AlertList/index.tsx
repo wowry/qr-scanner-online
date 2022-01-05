@@ -25,8 +25,6 @@ const AlertList: React.VFC = () => {
     const inputPaneWidth =
       document.querySelector(".input-pane")?.clientWidth || 0;
 
-    console.log(inputPaneWidth);
-
     setWidth(inputPaneWidth);
   }, [setWidth]);
 

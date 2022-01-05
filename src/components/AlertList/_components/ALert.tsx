@@ -1,11 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  AlertType,
-  removeAlert,
-  selectAlertState,
-} from "../../../libs/slices/AlertSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AlertType, removeAlert } from "../../../libs/slices/AlertSlice";
 import { alertDisplayTime } from "../../variables";
 import { css } from "@emotion/react";
 import MuiAlert from "@mui/material/Alert";
@@ -18,15 +14,16 @@ const styles = {
     z-index: 20;
 
     @keyframes fadeIn {
+      // ちらつき防止のため遅延表示
       1% {
-        transform: translateY(${offset + 25}px);
+        transform: translateY(${offset + 30}px);
       }
       2%,
       98% {
         transform: translateY(0px);
       }
       100% {
-        transform: translateY(${offset + 25}px);
+        transform: translateY(${offset + 30}px);
       }
     }
   `,
@@ -39,16 +36,23 @@ interface Props {
 }
 
 const Alert: React.VFC<Props> = (props) => {
-  const alertState = useSelector(selectAlertState);
+  const [hasFirstRendered, setHasFirstRendered] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const alertHeight = document.querySelector(".alert")?.clientHeight || 0;
+    if (hasFirstRendered) {
+      let offset = 0;
 
-    console.log(alertHeight);
+      document.querySelectorAll(".alert").forEach((alert) => {
+        offset += alert.clientHeight;
+      });
 
-    props.setOffset(alertHeight);
-  }, [props]);
+      props.setOffset(offset);
+    } else {
+      // 初回レンダリング -> オフセット設定
+      setHasFirstRendered(true);
+    }
+  }, [hasFirstRendered, props]);
 
   return (
     <MuiAlert
