@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import Header from "../components/Header/Header";
-import Description from "../components/Description/Description";
-import Scanner from "../components/Scanner/Scanner";
+import Header from "../components/Header";
+import Description from "../components/Description";
+import Scanner from "../components/Scanner";
 import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
