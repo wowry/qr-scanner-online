@@ -45,9 +45,12 @@ const styles = {
     color: ${blue[900]};
     margin-bottom: 10px;
   `,
-  addIcon: css`
+  addIcon: (addIconVisibility: boolean) => css`
     fill: ${blue[500]};
     font-size: 6rem;
+    transform: scale(${addIconVisibility ? 1 : 0.6});
+    opacity: ${addIconVisibility ? 0.6 : 0};
+    transition: ${addIconVisibility ? "0.2s" : "0.1s"};
     z-index: 5;
   `,
 };
@@ -185,17 +188,7 @@ const InputPane: React.VFC = () => {
       >
         <Typography css={styles.title}>画像を選択</Typography>
         <Description />
-        <Add
-          css={[
-            commonStyles.center,
-            styles.addIcon,
-            css`
-              transform: scale(${addIconVisibility ? 1 : 0.6});
-              opacity: ${addIconVisibility ? 0.6 : 0};
-              transition: ${addIconVisibility ? "0.2s" : "0.1s"};
-            `,
-          ]}
-        />
+        <Add css={[commonStyles.center, styles.addIcon(addIconVisibility)]} />
 
         {imageUrl && (
           <ImageCard imageUrl={imageUrl} hideAllIcons={hideAllIcons} />

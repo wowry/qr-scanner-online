@@ -20,10 +20,11 @@ import Card from "@mui/material/Card";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export const styles = {
-  container: css`
+  container: (height: number) => css`
     position: relative;
     width: 100%;
-    margin-top: 20px;
+    height: ${height}px;
+    margin-top: 30px;
   `,
   canvas: css`
     width: 100%;
@@ -147,15 +148,7 @@ const ImageCard: React.VFC<Props> = (props) => {
         className="qrcode"
         style={{ display: "none" }}
       />
-      <Card
-        css={[
-          commonStyles.center,
-          styles.container,
-          css`
-            height: ${canvasHeight}px;
-          `,
-        ]}
-      >
+      <Card css={[commonStyles.center, styles.container(canvasHeight)]}>
         <canvas className="canvas" css={styles.canvas} />
         {isLoading && (
           <CircularProgress css={[commonStyles.center, styles.loadIcon]} />
