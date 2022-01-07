@@ -26,13 +26,13 @@ const Home: NextPage = () => {
       </main>
 
       <footer className={styles.footer}>
-        Created by wowry
+        Developed by wowry
         <a
           href="https://github.com/wowry"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <GitHub width={72} height={16} />
+          <GitHub />
         </a>
       </footer>
     </div>
