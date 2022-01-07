@@ -26,7 +26,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Build and Push Docker Image
         id: docker_build
@@ -55,7 +55,7 @@ jobs:
 
       - name: Build Next App
         run: |
-          yarn
+          yarn --frozen-lockfile
           yarn build
       
       - name: Deploy Next App to Vercel
