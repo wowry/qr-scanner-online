@@ -29,7 +29,7 @@ const styles = {
   `,
 };
 
-interface Props {
+export interface Props {
   alert: AlertType;
   offset: number;
   setOffset: React.Dispatch<React.SetStateAction<number>>;

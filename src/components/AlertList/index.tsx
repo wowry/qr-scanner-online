@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectAlertState } from "../../libs/slices/AlertSlice";
-import Alert from "./_components/ALert";
+import Alert from "./_components/Alert";
 import { css } from "@emotion/react";
 import { Container } from "@mui/material";
 
