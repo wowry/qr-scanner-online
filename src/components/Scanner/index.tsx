@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectAlertState } from "../../libs/slices/AlertSlice";
 import InputPane from "./_components/InputPane";
-import OutputPane from "./_components/OutputPane/OutputPane";
+import OutputPane from "./_components/OutputPane";
 import AlertList from "../AlertList";
 import { css } from "@emotion/react";
 import { useTheme } from "@mui/material/styles";
