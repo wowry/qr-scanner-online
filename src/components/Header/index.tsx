@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
-import Image from "next/image";
 import { css } from "@emotion/react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -22,7 +21,7 @@ const Header: React.VFC = () => {
   return (
     <AppBar position="relative">
       <Toolbar css={styles.container}>
-        <Image src="/favicon.png" alt="logo" width={28} height={28} />
+        <img src="/favicon.png" alt="logo" width={28} height={28} />
         <Typography css={styles.title}>QR Scanner Online</Typography>
         <div>
           <a
