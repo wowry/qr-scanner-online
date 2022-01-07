@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://qr-scanner-online.wowry.dev
+
+# Sitemaps
+Sitemap: https://qr-scanner-online.wowry.dev/sitemap.xml
