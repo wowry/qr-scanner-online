@@ -33,7 +33,7 @@ export const styles = {
   `,
 };
 
-interface Props {
+export interface Props {
   id: number;
   url: string;
 }
