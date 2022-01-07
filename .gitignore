@@ -38,3 +38,6 @@ yarn-error.log*
 
 # wasm build
 /src/models/build/
+
+# sitemap
+/public/sitemap.xml
