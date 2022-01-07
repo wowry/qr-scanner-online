@@ -25,7 +25,7 @@ const Home: NextPage = () => {
       <footer className={styles.footer}>
         Created by wowry
         <a
-          href="https://github.com/wowry/qr-scanner-online"
+          href="https://github.com/wowry"
           target="_blank"
           rel="noopener noreferrer"
         >
