@@ -1,0 +1,68 @@
+name: Build and Deploy App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: yarn
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and Push Docker Image
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./src/models
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache
+          cache-to: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache,mode=max
+      
+      - name: Get Wasm Built File
+        run: |
+          docker rm -f container
+          docker run --name container ghcr.io/${{ github.repository }}:latest
+          mkdir -p ./src/models/build
+          docker cp container:/app/build/detector.js ./src/models/build/
+          docker rm -f container
+      
+      - name: Check Wasm Built File
+        run: |
+          if [ ! -f ./src/models/build/detector.js ]; then
+            echo "Wasm built file not found"
+            exit 1
+          fi
+
+      - name: Build Next App
+        run: |
+          yarn
+          yarn build
+      
+      - name: Deploy Next App to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
+          vercel-args: "--prod"
+          working-directory: ./
