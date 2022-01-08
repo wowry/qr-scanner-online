@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/23b592aa1cb24e60ab79ed9b23c2e2cf)](https://app.codacy.com/gh/wowry/qr-scanner-online?utm_source=github.com&utm_medium=referral&utm_content=wowry/qr-scanner-online&utm_campaign=Badge_Grade_Settings)
+
 First, run the development server:
 
 ```bash
