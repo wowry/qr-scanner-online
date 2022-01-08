@@ -41,6 +41,12 @@ const GAScripts: React.VFC = () => {
                 'analytics_storage': 'granted'
               });
             }
+            function consentDenied() {
+              gtag('consent', 'update', {
+                'ad_storage': 'denied',
+                'analytics_storage': 'denied'
+              });
+            }
           `,
         }}
       />

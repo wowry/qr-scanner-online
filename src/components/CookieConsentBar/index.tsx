@@ -45,6 +45,7 @@ const CookieConsentBar: React.VFC = () => {
       buttonStyle={{ ...styles.button, ...styles.approve }}
       declineButtonStyle={{ ...styles.button, ...styles.decline }}
       onAccept={() => window.consentGranted()}
+      onDecline={() => window.consentDenied()}
     >
       <SecurityIcon style={{ marginRight: "0.5rem" }} />
       当サイトは利便性向上のため、Cookieを使用します。

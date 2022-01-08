@@ -11,7 +11,8 @@ import "../styles/globals.scss";
 declare global {
   // eslint-disable-next-line no-unused-vars
   interface Window {
-    consentGranted: any;
+    consentGranted: () => any;
+    consentDenied: () => any;
   }
 }
 
