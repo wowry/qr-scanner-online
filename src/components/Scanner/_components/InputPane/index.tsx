@@ -15,7 +15,8 @@ import { blue } from "@mui/material/colors";
 import commonStyles from "./commonStyles";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Add from "@mui/icons-material/Add";
+import AddIcon from "@mui/icons-material/Add";
+import ImageIcon from "@mui/icons-material/Image";
 
 const styles = {
   wrapper: css`
@@ -41,9 +42,16 @@ const styles = {
     }
   `,
   title: css`
+    display: inline-flex;
+    align-items: center;
     font-weight: bold;
     color: ${blue[900]};
     margin-bottom: 10px;
+    vertical-align: middle;
+
+    svg {
+      margin-right: 0.5rem;
+    }
   `,
   addIcon: (addIconVisibility: boolean) => css`
     fill: ${blue[500]};
@@ -186,9 +194,14 @@ const InputPane: React.VFC = () => {
         onTouchEnd={(e) => dragLeaveEventHandler(e)}
         onDragOver={(e) => dragOverEventHandler(e)}
       >
-        <Typography css={styles.title}>画像を選択</Typography>
+        <Typography css={styles.title}>
+          <ImageIcon />
+          画像を選択
+        </Typography>
         <Description />
-        <Add css={[commonStyles.center, styles.addIcon(addIconVisibility)]} />
+        <AddIcon
+          css={[commonStyles.center, styles.addIcon(addIconVisibility)]}
+        />
 
         {imageUrl && (
           <ImageCard imageUrl={imageUrl} hideAllIcons={hideAllIcons} />

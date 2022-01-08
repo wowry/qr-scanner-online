@@ -9,6 +9,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import SearchIcon from "@mui/icons-material/Search";
 
 export const styles = {
   wrapper: css`
@@ -22,9 +23,15 @@ export const styles = {
     padding-bottom: 10px;
   `,
   title: css`
+    display: inline-flex;
+    align-items: center;
     font-weight: bold;
     margin-bottom: 20px;
     color: ${blue[900]};
+
+    svg {
+      margin-right: 0.5rem;
+    }
   `,
 };
 
@@ -51,7 +58,10 @@ const OutputPane: React.VFC = () => {
   return (
     <div css={styles.wrapper} id="outputPane">
       <Container css={styles.container}>
-        <Typography css={styles.title}>検出結果</Typography>
+        <Typography css={styles.title}>
+          <SearchIcon />
+          検出結果
+        </Typography>
         {cardList}
       </Container>
     </div>
