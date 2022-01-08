@@ -53,12 +53,6 @@ jobs:
             exit 1
           fi
 
-      - name: Create env file
-        shell: bash
-        run: |
-          cp .env.local.example .env.local
-          echo "${{ secrets.NEXT_PUBLIC_GA_ID }}" >> .env.local
-
       - name: Build Next App
         run: |
           yarn --frozen-lockfile
