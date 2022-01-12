@@ -1,4 +1,4 @@
-name: Build and Deploy App
+name: Build/Deploy
 
 on:
   push:
@@ -34,7 +34,9 @@ jobs:
         with:
           context: ./src/models
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: |
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:1.0.0
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache
           cache-to: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache,mode=max
       
