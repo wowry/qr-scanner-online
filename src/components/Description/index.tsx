@@ -13,6 +13,7 @@ const styles = {
   description: css`
     margin: 0;
     font-size: 1rem;
+    font-weight: normal;
   `,
 };
 
