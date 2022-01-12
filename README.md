@@ -26,7 +26,7 @@
 
 ## DEMO
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/35371161/148780114-0a8ad5fa-041f-4c39-a8b3-e1ccf07d3383.gif"></img>
+  <img src="https://user-images.githubusercontent.com/35371161/149203839-9cd4f403-8c56-4333-bae8-67ee97aa194e.gif"></img>
 </p>
 
 ## Features
