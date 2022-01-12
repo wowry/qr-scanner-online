@@ -26,7 +26,7 @@
 
 ## DEMO
 <p align="center">
-  <img height="400px" src='https://user-images.githubusercontent.com/35371161/148670522-84234522-f4f5-45da-890e-435b2ef7f699.gif'></img>
+  <img src="https://user-images.githubusercontent.com/35371161/148780114-0a8ad5fa-041f-4c39-a8b3-e1ccf07d3383.gif"></img>
 </p>
 
 ## Features
@@ -39,7 +39,7 @@
 
 ## アプリケーション構成
 <p align="center">
-  <img height="400px" src="https://user-images.githubusercontent.com/35371161/148670580-3920dea1-2ab4-4243-b0f4-bce7c378d2ea.png"></img>
+  <img src="https://user-images.githubusercontent.com/35371161/148780298-24b46f8b-cc75-4006-a4f9-4fc3228d24f1.png"></img>
 </p>
 
 ## Installation
