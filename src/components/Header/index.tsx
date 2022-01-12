@@ -21,7 +21,7 @@ const Header: React.VFC = () => {
   return (
     <AppBar position="relative">
       <Toolbar css={styles.container}>
-        <img src="/favicon.png" alt="logo" width={28} height={28} />
+        <img src="/favicon.ico" alt="logo" width={28} height={28} />
         <Typography css={styles.title}>QR Scanner Online</Typography>
         <div>
           <a
