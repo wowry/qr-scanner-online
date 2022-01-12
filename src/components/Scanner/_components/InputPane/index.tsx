@@ -75,7 +75,7 @@ const InputPane: React.VFC = () => {
     const element = document.querySelector(".paste");
 
     element?.addEventListener("click", paste);
-    element?.addEventListener("touchstart", paste);
+    element?.addEventListener("touchstart", paste, { passive: true });
 
     const keyupHandler = (e: KeyboardEvent) => {
       e.preventDefault();
