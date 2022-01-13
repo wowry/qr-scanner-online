@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import Layout from "../components/Layout";
 import GAScripts from "../components/GAScripts";
 import CookieConsentBar from "../components/CookieConsentBar";
 import { Provider } from "react-redux";
@@ -33,7 +34,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <GAScripts />
 
       <Provider store={store}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </Provider>
 
       <CookieConsentBar />
