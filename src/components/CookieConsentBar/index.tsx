@@ -1,8 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import CookieConsent from "react-cookie-consent";
+import Link from "next/link";
+import { css } from "@emotion/react";
 import { red } from "@mui/material/colors";
 import SecurityIcon from "@mui/icons-material/Security";
+import MuiLink from "@mui/material/Link";
 
 const styles = {
   container: {
@@ -30,6 +33,9 @@ const styles = {
     border: `1px solid ${red[500]}`,
     color: red[500],
   },
+  link: css`
+    display: contents;
+  `,
 };
 
 const CookieConsentBar: React.VFC = () => {
@@ -48,7 +54,11 @@ const CookieConsentBar: React.VFC = () => {
       onDecline={() => window.consentDenied()}
     >
       <SecurityIcon style={{ marginRight: "0.5rem" }} />
-      当サイトは利便性向上のため、Cookieを使用します。
+      当サイトは利便性向上のため、Cookieを使用します。詳細は
+      <Link href="/policy" passHref>
+        <MuiLink css={styles.link}>プライバシーポリシー</MuiLink>
+      </Link>
+      をご覧ください。
     </CookieConsent>
   );
 };
