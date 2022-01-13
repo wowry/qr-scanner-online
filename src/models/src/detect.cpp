@@ -1,7 +1,6 @@
 #include "detect.hpp"
 #include <emscripten/bind.h>
 #include <emscripten.h>
-#include <opencv2/imgcodecs.hpp>
 
 bool Detect::detect(size_t addr, int width, int height)
 {
