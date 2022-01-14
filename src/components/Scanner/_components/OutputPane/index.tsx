@@ -5,8 +5,6 @@ import { selectImageCardState } from "../../../../libs/slices/ImageCardSlice";
 import ResultCard from "../../../ResultCard";
 import { css } from "@emotion/react";
 import { blue } from "@mui/material/colors";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import SearchIcon from "@mui/icons-material/Search";
@@ -35,11 +33,12 @@ export const styles = {
   `,
 };
 
-const OutputPane: React.VFC = () => {
-  const imageCardState = useSelector(selectImageCardState);
+export interface Props {
+  isPC: boolean;
+}
 
-  const theme = useTheme();
-  const isPC = useMediaQuery(theme.breakpoints.up("sm"));
+const OutputPane: React.VFC<Props> = ({ isPC }) => {
+  const imageCardState = useSelector(selectImageCardState);
 
   useEffect(() => {
     if (!isPC && imageCardState.hasCompleted) {

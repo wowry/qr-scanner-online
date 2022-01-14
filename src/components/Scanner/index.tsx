@@ -29,7 +29,9 @@ const Scanner: React.VFC = () => {
   const alertState = useSelector(selectAlertState);
 
   const theme = useTheme();
-  const isPC = useMediaQuery(theme.breakpoints.up("sm"));
+  const isPC = useMediaQuery(theme.breakpoints.up("sm"), {
+    defaultMatches: true,
+  });
 
   return (
     <div css={styles.container(isPC)}>
@@ -37,7 +39,7 @@ const Scanner: React.VFC = () => {
         <InputPane />
       </div>
       <div css={styles.pane(isPC)}>
-        <OutputPane />
+        <OutputPane isPC={isPC} />
       </div>
       {alertState.alertList.length > 0 && <AlertList />}
     </div>
