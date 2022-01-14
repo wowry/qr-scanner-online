@@ -41,6 +41,7 @@ const Layout: React.VFC<Props> = ({ children }) => {
     <>
       <Head>
         <title>QR Scanner Online</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
           content="スクリーンショットなどの画像からQRコードを検出するアプリです。画像のコピー&ペースト、ドラッグ&ドロップに対応。複数のQRコード検出に対応。"
