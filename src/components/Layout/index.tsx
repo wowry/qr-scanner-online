@@ -3,6 +3,7 @@ import React from "react";
 import Head from "next/head";
 import Header from "../Header";
 import favicon from "/assets/favicon.ico";
+import screenshot from "/assets/screenshot.png";
 import { css } from "@emotion/react";
 import GitHub from "@mui/icons-material/GitHub";
 
@@ -41,12 +42,28 @@ const Layout: React.VFC<Props> = ({ children }) => {
   return (
     <>
       <Head>
-        <title>QR Scanner Online</title>
+        <title>QR Scanner Online｜画面のQRコード読み取りサイト</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
-          content="スクリーンショットなどの画像からQRコードを検出するアプリです。画像のコピー&ペースト、ドラッグ&ドロップに対応。複数のQRコード検出に対応。"
+          content="画面のQRコードをスクリーンショットなどから読み取るサイトです。画像のコピペ、ドラッグ&ドロップに対応。複数のQRコードを検出できます。"
         />
+        <meta property="og:site_name" content="QR Scanner Online" />
+        <meta
+          property="og:title"
+          content="QR Scanner Online｜画面のQRコード読み取りサイト"
+        />
+        <meta
+          property="og:description"
+          content="画面のQRコードをスクリーンショットなどから読み取るサイトです。画像のコピペ、ドラッグ&ドロップに対応。複数のQRコードを検出できます。"
+        />
+        <meta
+          property="og:url"
+          content="https://qr-scanner-online.wowry.dev/"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={screenshot.src} />
+        <meta name="twitter:card" content="summary_large_image" />
         <link rel="icon" href={favicon.src} />
       </Head>
 
