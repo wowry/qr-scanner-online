@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import Link from "next/link";
+import favicon from "/assets/favicon.ico";
 import { css } from "@emotion/react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -38,7 +39,7 @@ const Header: React.VFC = () => {
         <div css={styles.title}>
           <Link href="/" passHref>
             <a style={{ display: "inline-flex", alignItems: "center" }}>
-              <img src="/favicon.ico" alt="logo" width={28} height={28} />
+              <img src={favicon.src} alt="logo" width={28} height={28} />
               <Typography>QR Scanner Online</Typography>
             </a>
           </Link>

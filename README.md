@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img align="center" height="50px" src='./public/favicon.png'></img> QR Scanner Online
+  <img align="center" height="50px" src='./assets/favicon.png'></img> QR Scanner Online
 </h1>
 
 <p align="center">
@@ -25,6 +25,7 @@
 ### **https://qr-scanner-online.wowry.dev**
 
 ## DEMO
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/35371161/149203839-9cd4f403-8c56-4333-bae8-67ee97aa194e.gif"></img>
 </p>
@@ -38,6 +39,7 @@
 **3. C++, WebAssembly を用いて、QR コード検出処理を高速化**
 
 ## アプリケーション構成
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/35371161/148780298-24b46f8b-cc75-4006-a4f9-4fc3228d24f1.png"></img>
 </p>
@@ -69,27 +71,33 @@ yarn install
 ## Usage
 
 - Next.js を開発用ローカルサーバで実行
+
   ```sh
   yarn dev
   ```
+
   👉http://localhost:3000
 
 - Next.js をビルド（サイトマップを同時生成）
+
   ```sh
   yarn build
   ```
 
 - Next.js を本番用ローカルサーバで実行
+
   ```sh
   yarn start
   ```
 
 - ESLint による静的解析を実行
+
   ```sh
   yarn lint
   ```
 
 - Prettier によるコード整形を実行
+
   ```sh
   yarn format
   ```
@@ -97,11 +105,13 @@ yarn install
   （ESLint による静的解析、および Prettier によるコード整形は、コミット時に毎回自動実行）
 
 - [Storybook](https://storybook.js.org/) を起動
+
   ```sh
   yarn storybook
   ```
+
   👉http://localhost:6006
-  
+
   ブラウザ上で UI コンポーネントの管理・テストを行うことができます。
 
 ## License

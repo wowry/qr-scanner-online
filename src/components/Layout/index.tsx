@@ -2,6 +2,7 @@
 import React from "react";
 import Head from "next/head";
 import Header from "../Header";
+import favicon from "/assets/favicon.ico";
 import { css } from "@emotion/react";
 import GitHub from "@mui/icons-material/GitHub";
 
@@ -46,7 +47,7 @@ const Layout: React.VFC<Props> = ({ children }) => {
           name="description"
           content="スクリーンショットなどの画像からQRコードを検出するアプリです。画像のコピー&ペースト、ドラッグ&ドロップに対応。複数のQRコード検出に対応。"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href={favicon.src} />
       </Head>
 
       <Header />
