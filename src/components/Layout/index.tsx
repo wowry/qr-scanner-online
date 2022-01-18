@@ -42,27 +42,30 @@ const Layout: React.VFC<Props> = ({ children }) => {
   return (
     <>
       <Head>
-        <title>QR Scanner Online｜画面のQRコード読み取りサイト</title>
+        <title>QR Scanner Online｜画面上のQRコード読み取りサイト</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
-          content="画面のQRコードをスクリーンショットなどから読み取るサイトです。画像のコピペ、ドラッグ&ドロップに対応。複数のQRコードを検出できます。"
+          content="画面上のQRコードをスクリーンショットなどから読み取るサイトです。画像のコピペ、ドラッグ&ドロップに対応。複数のQRコードを検出できます。"
         />
         <meta property="og:site_name" content="QR Scanner Online" />
         <meta
           property="og:title"
-          content="QR Scanner Online｜画面のQRコード読み取りサイト"
+          content="QR Scanner Online｜画面上のQRコード読み取りサイト"
         />
         <meta
           property="og:description"
-          content="画面のQRコードをスクリーンショットなどから読み取るサイトです。画像のコピペ、ドラッグ&ドロップに対応。複数のQRコードを検出できます。"
+          content="画面上のQRコードをスクリーンショットなどから読み取るサイトです。画像のコピペ、ドラッグ&ドロップに対応。複数のQRコードを検出できます。"
         />
         <meta
           property="og:url"
           content="https://qr-scanner-online.wowry.dev/"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={screenshot.src} />
+        <meta
+          property="og:image"
+          content={`https://qr-scanner-online.wowry.dev${screenshot.src}`}
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="icon" href={favicon.src} />
       </Head>
