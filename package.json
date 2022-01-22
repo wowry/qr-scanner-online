@@ -5,6 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier \"**/*.{js,ts,jsx,tsx,json}\" --write --ignore-path .gitignore",
