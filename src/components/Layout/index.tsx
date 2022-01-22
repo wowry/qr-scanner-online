@@ -36,9 +36,10 @@ const styles = {
 
 interface Props {
   children: React.ReactElement;
+  noindex: boolean;
 }
 
-const Layout: React.VFC<Props> = ({ children }) => {
+const Layout: React.VFC<Props> = ({ children, noindex }) => {
   return (
     <>
       <Head>
@@ -48,6 +49,7 @@ const Layout: React.VFC<Props> = ({ children }) => {
           name="description"
           content="画面上のQRコードをスクリーンショットなどから読み取るサイトです。画像のコピペ、ドラッグ&ドロップに対応。複数のQRコードを検出できます。"
         />
+        {noindex && <meta name="robots" content="noindex" />}
         <meta property="og:site_name" content="QR Scanner Online" />
         <meta
           property="og:title"

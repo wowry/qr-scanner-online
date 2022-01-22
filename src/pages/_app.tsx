@@ -17,24 +17,25 @@ declare global {
   }
 }
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+function MyApp({ Component, pageProps, router }: AppProps) {
+  const _router = useRouter();
+
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       gtag.pageview(url);
     };
-    router.events.on("routeChangeComplete", handleRouteChange);
+    _router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
+      _router.events.off("routeChangeComplete", handleRouteChange);
     };
-  }, [router.events]);
+  }, [_router.events]);
 
   return (
     <>
       <GAScripts />
 
       <Provider store={store}>
-        <Layout>
+        <Layout noindex={router.pathname == "/policy"}>
           <Component {...pageProps} />
         </Layout>
       </Provider>
